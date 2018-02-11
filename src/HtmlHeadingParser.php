@@ -1,9 +1,6 @@
 <?php
-
 namespace IbraheemGhazi\HeadingParser;
-
 use IbraheemGhazi\HeadingParser\HtmlHeading;
-
 class HtmlHeadingParser{
    
       
@@ -16,7 +13,6 @@ class HtmlHeadingParser{
    public static function parse($code){
 	   
 	    preg_match_all('|<\s*h[2-6](?:.*)>(.*)</\s*h|Ui', $code, $matches);
-
         $h=[];
         foreach ($matches[0] as $idx=>$head){
             if(strpos($head, '<h2') === 0){
@@ -28,7 +24,6 @@ class HtmlHeadingParser{
                 $hobj =  new HtmlHeading();
                 $hobj->type = 3;
                 $hobj->text = $matches[1][$idx];
-
                 if(end($h) && end($h)->type != $hobj->type){
                     $lastH2 = end($h);
                     if($lastH2){
@@ -37,13 +32,11 @@ class HtmlHeadingParser{
                 }else{
                     $h[]=$hobj;
                 }
-
             }
             elseif(strpos($head, '<h4') === 0){
                 $hobj =  new HtmlHeading();
                 $hobj->type = 4;
                 $hobj->text = $matches[1][$idx];
-
                 if(end($h) && end($h)->type != $hobj->type){
                     $lastH2 = end($h);
                     if(end($lastH2->childrens) && end($lastH2->childrens)->type != $hobj->type){
@@ -55,13 +48,11 @@ class HtmlHeadingParser{
                 }else{
                     $h[]=$hobj;
                 }
-
             }
             elseif(strpos($head, '<h5') === 0){
-                $hobj =  new Heading();
+                $hobj =  new HtmlHeading();
                 $hobj->type = 5;
                 $hobj->text = $matches[1][$idx];
-
                 if(end($h) && end($h)->type != $hobj->type){
                     $lastH2 = end($h);
                     if($lastH2 && end($lastH2->childrens) && end($lastH2->childrens)->type != $hobj->type){
@@ -78,13 +69,11 @@ class HtmlHeadingParser{
                 }else{
                     $h[]=$hobj;
                 }
-
             }
             elseif(strpos($head, '<h6') === 0){
                 $hobj =  new HtmlHeading();
                 $hobj->type = 6;
                 $hobj->text = $matches[1][$idx];
-
                 if(end($h) && end($h)->type != $hobj->type){
                     $lastH2 = end($h);
                     if($lastH2 && end($lastH2->childrens) && end($lastH2->childrens)->type != $hobj->type){
@@ -106,7 +95,6 @@ class HtmlHeadingParser{
                 }else{
                     $h[]=$hobj;
                 }
-
             }
         }
 	   return $h;
