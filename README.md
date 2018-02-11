@@ -1,10 +1,22 @@
 # heading-parser
 
+php parser for html heading starting from H2 to H6 as content table
+
 Install
 ========
 
 ```
  $ composer require ibraheem-ghazi/heading-parser
+```
+
+Functions
+=========
+**parse($code)**
+```
+paramters:
+$code // the html code for topic or post
+
+return array of HtmlHeading 
 ```
 
 **Example:**
