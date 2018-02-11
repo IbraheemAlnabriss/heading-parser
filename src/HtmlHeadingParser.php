@@ -57,7 +57,7 @@ class HtmlHeadingParser{
                 }
 
             }
-            elseif(starts_with($head,'<h5')){
+            elseif(strpos($head, '<h5') === 0){
                 $hobj =  new Heading();
                 $hobj->type = 5;
                 $hobj->text = $matches[1][$idx];
@@ -80,7 +80,7 @@ class HtmlHeadingParser{
                 }
 
             }
-            elseif(starts_with($head,'<h6')){
+            elseif(strpos($head, '<h6') === 0){
                 $hobj =  new HtmlHeading();
                 $hobj->type = 6;
                 $hobj->text = $matches[1][$idx];
